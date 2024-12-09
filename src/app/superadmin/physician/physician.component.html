@@ -81,16 +81,16 @@
                                             </div>
                                         </td>
                                         <td class="profile-image">
-                                            <a href="doctor-profile.html">{{ physician.firstName }} {{ physician.lastName }}</a>
+                                            <a href="doctor-profile.html">{{ physician?.firstName }} {{ physician?.lastName }}</a>
                                         </td>
-                                        <td>{{physician.address_street1}}</td>
-                                        <td>{{physician.address_street2}}</td>
+                                        <td>{{physician?.address_street1}}</td>
+                                        <td>{{physician?.address_street2}}</td>
 
                                         <td>{{physician?.city?.name}}</td>
 
-                                        <td><a href="javascript:;">{{ physician.phone }}</a></td>
-                                        <td>{{ physician.email }}</td>
-                                        <td>{{ physician.createdAt | date: 'shortDate' }}</td>
+                                        <td><a href="javascript:;">{{ physician?.phone }}</a></td>
+                                        <td>{{ physician?.email }}</td>
+                                        <td>{{ physician?.createdAt | date: 'shortDate' }}</td>
                                         <!-- <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -107,7 +107,7 @@
 
                                         <td class="text-end">
 
-                                            <a (click)="viewPhysician(physician._id)"class="icon-action edit-icon" title="View">
+                                            <a (click)="viewPhysician(physician?._id)"class="icon-action edit-icon" title="View">
                                                 <i class="fa-solid fa-eye m-r-5"></i>
                                             </a>
 
