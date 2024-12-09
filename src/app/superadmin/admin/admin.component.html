@@ -1,0 +1,127 @@
+<div class="page-wrapper">
+    <div class="content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Admin</a></li>
+              <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
+              <li class="breadcrumb-item active">Admin List</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card card-table show-entire">
+            <div class="card-body">
+              <!-- Table Header -->
+              <div class="page-table-header mb-2">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="doctor-table-blk">
+                      <h3>Admin List</h3>
+                      <div class="doctor-search-blk">
+                        <div class="top-nav-search table-search-blk">
+                          <div [formGroup]="adminForm">
+                            <input class="form-control" placeholder="Search here" formControlName="search">
+                            <a class="btn" (click)="onSearch()">
+                              <img src="assets/img/icons/search-normal.svg" alt="">
+                            </a>
+                          </div>
+                        </div>
+                        <div class="add-group">
+
+                         
+                          <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2" (click)="onSearch()"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
+                          <!-- <a href="add-doctor.html" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a> -->
+                          <a [routerLink]="['/superadmin/add-admin']" class="btn btn-primary add-pluss ms-2">
+                            <img src="assets/img/icons/plus.svg" alt="Add">
+                        </a>
+                        
+                          <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2" (click)="loadAdminData()"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-auto text-end float-end ms-auto download-grp">
+  <a class="me-2" (click)="downloadPDF()"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
+  
+  <a (click)="downloadExcel()"><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
+</div>
+
+                </div>
+              </div>
+              <!-- /Table Header -->
+  
+              <div class="table-responsive">
+                <table class="table border-0 custom-table comman-table datatable mb-0">
+                  <thead>
+                    <tr>
+                      <th>S.N.</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Joining Date</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let admin of admins; let i = index">
+                      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                      <td class="profile-image">
+                        <a href="doctor-profile.html">{{ admin.firstName }} {{ admin.lastName }}</a>
+                      </td>
+                      <td>{{ admin.email }}</td>
+                      <td>{{ admin.phone }}</td>
+                      <td>{{ admin.createdAt | date:'shortDate' }}</td>
+                      
+
+                      <td class="text-end">
+
+                        <a (click)="editAdmin(admin._id)" class="icon-action edit-icon" title="Edit">
+                            <i class="fa-solid fa-pen-to-square m-r-5"></i>
+                        </a>
+                        <a (click)="deleteAdmin(admin._id)"class="icon-action delete-icon" title="Delete">
+                            <i class="fa fa-trash-alt m-r-5"></i>
+                        </a>
+                    </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="table_footer">
+                    <div class="col-sm-12 col-md-5">
+                      <div class="dataTables_info">
+                        Showing {{ getCurrentMin() }} to {{ getCurrentMax() }} of {{ totalDocs }} entries
+                      </div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                      <div class="pagination_section">
+                        <ul class="pagination">
+                          <li class="page-item" [class.disabled]="currentPage === 1">
+                            <a class="page-link" (click)="goToPage(currentPage - 1)" href="javascript:void(0);">Previous</a>
+                          </li>
+                          <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === (i + 1)">
+                            <a class="page-link" (click)="goToPage(i + 1)" href="javascript:void(0);">{{ i + 1 }}</a>
+                          </li>
+                          <li class="page-item" [class.disabled]="currentPage === totalPages">
+                            <a class="page-link" (click)="goToPage(currentPage + 1)" href="javascript:void(0);">Next</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

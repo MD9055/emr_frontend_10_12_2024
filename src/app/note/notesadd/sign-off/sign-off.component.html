@@ -1,0 +1,102 @@
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  aria-labelledby="modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title" id="modal-title">
+          CPT Details
+        </h5>
+      </div>
+      <div class="card custom-card shadow-md">
+        <div class="card-body">
+          <div class="row">
+            <ng-select
+             id="patients"
+             [items]="diagnosisList"
+             [bindLabel]="'desc'"
+             [bindValue]="'_id'"
+             [multiple]="true"
+             [searchable]="true"
+             [loading]="loading"
+             (change)="onSelectionChange($event)"
+             (scrollToEnd)="loadMoreItems()"
+             (search)="onSearch($event)"
+             [(ngModel)]="patientSelectedIds"
+             [ngModelOptions]="{standalone: true}"
+             class="form-control custom-ng-select"
+           >
+             <ng-template ng-option-tmp let-item="item">
+                <div class="custom-option">
+                    ({{ item.code }}) {{ item.desc }}
+                </div>
+             </ng-template>
+
+             <ng-template
+               ng-multi-label-tmp
+               let-items="items"
+               let-clear="clear"
+             >
+               <div class="selected-items">
+                 <span *ngFor="let item of items" style="color: black">
+                    ({{ item.code }}) {{ item.desc }}
+                   <button
+                     type="button"
+                     class="close-btn"
+                     (click)="removeItem(item)"
+                   >
+                     ✖
+                   </button>
+                 </span>
+               </div>
+             </ng-template>
+           </ng-select>
+
+           <div class="table-responsive mt-3">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>CPT</th>
+                  <th>ICD1</th>
+                  <th>ICD2</th>
+                  <th>ICD3</th>
+                  <th>ICD4</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let data of tableData">  
+                    <td>{{ data.cpt }}</td>
+                    <td>{{ data.icd1 }}</td>
+                    <td>{{ data.icd2 }}</td>
+                    <td>{{ data.icd3 }}</td>
+                    <td>{{ data.icd4 }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button
+        type="button"
+        class="btn btn-secondary custom-btn-secondary"
+        (click)="handleClose()"
+      >
+        Close
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary custom-btn-primary"
+        (click)="handleSubmit()"
+      >
+        Confirm
+      </button>
+      </div>
+    </div>
+  </div>

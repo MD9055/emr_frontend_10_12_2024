@@ -1,0 +1,84 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper setup-profile-body">
+    <div class="container-fluid px-0">
+        <div class="row">
+            <!-- Logo -->
+            <div class="col-lg-6 setup-logo-wrap">
+                <div class="setup-sec">
+                    <div class="log-img">
+                        <img class="img-fluid" src="assets/img/login-02.png" alt="Logo" />
+                    </div>
+                </div>
+            </div>
+            <!-- /Logo -->
+  
+            <!-- Setup Profile Content -->
+            <div class="col-lg-6 setup-wrap-bg">
+                <div class="setup-wrapper">
+                    <div class="setupbox">
+                        <div class="setup-right">
+                            <div class="setup-right-wrap">
+                                <div class="account-logo">
+                                    <img src="assets/img/login-logo.png" alt="" />
+                                </div>
+                                <h2>Setup Profile</h2>
+                                <!-- Form -->
+                                <form [formGroup]="profileForm" (ngSubmit)="profileFormSubmit()">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="firstName">First Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" formControlName="firstName" type="text" [disabled]="true" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                        <label for="lastName">Last Name <span class="login-danger">*</span></label>
+                                            <input class="form-control" formControlName="lastName" type="text" [disabled]="true" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="email">Email <span class="login-danger">*</span></label>
+                                            <input class="form-control" formControlName="email" type="text" [disabled]="true" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="mobile">Mobile <span class="login-danger">*</span></label>
+                                            <input class="form-control" formControlName="phone" type="text" [disabled]="true" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password <span class="login-danger">*</span></label>
+                                        <input class="form-control pass-input" [type]="passwordClass ? 'text' : 'password'" formControlName="password" />
+                                        <span (click)="togglePassword()" class="profile-views toggle-password" tabindex="0"></span>
+                                        <div *ngIf="isInvalidInput('password')" class="invalid-feedback">
+                                            <div *ngIf="profileForm.get('password').errors.required">Password is required.</div>
+                                            <div *ngIf="profileForm.get('password').errors.minlength">Password must be at least 8 characters.</div>
+                                            <div *ngIf="profileForm.get('password').errors.maxlength">Password cannot exceed 20 characters.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password <span class="login-danger">*</span></label>
+                                        <input class="form-control pass-input" [type]="confirmPasswordClass ? 'text' : 'password'" formControlName="confirmPassword" />
+                                        <span (click)="toggleConfirmPassword()" class="profile-views toggle-password" tabindex="0"></span>
+                                        <div *ngIf="isInvalidInput('confirmPassword')" class="invalid-feedback">
+                                            <div *ngIf="profileForm.get('confirmPassword').errors.required">Confirm Password is required.</div>
+                                            <div *ngIf="profileForm.get('confirmPassword').errors.match">Passwords must match.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group setup-btn">
+                                        <button class="btn btn-primary btn-block" type="submit" [disabled]="profileForm.invalid">
+                                            Save
+                                        </button>
+                                    </div>
+                                </form>
+                                <!-- /Form -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- /Setup Profile Content -->
+        </div>
+    </div>
+  </div>
+  <!-- /Main Wrapper -->
+  

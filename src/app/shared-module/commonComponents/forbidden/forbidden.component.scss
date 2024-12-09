@@ -1,0 +1,28 @@
+.forbidden-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.forbidden-sec {
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff; /* White background for the box */
+}
+
+h2 {
+    color: #dc3545; /* Bootstrap danger color for the heading */
+    margin-bottom: 15px;
+}
+
+p {
+    color: #555; /* Darker gray for text */
+    margin-bottom: 20px;
+}
+
+.forbidden-actions .btn {
+    margin-top: 10px;
+}

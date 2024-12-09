@@ -1,0 +1,221 @@
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+            <li class="breadcrumb-item"><i class="feather-chevron-right"></i></li>
+            <li class="breadcrumb-item active">{{status}} Admin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="adminForm">
+              <div class="row">
+                <div class="col-12">
+                  <h4>Admin Details</h4>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>First Name <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="firstName" placeholder="Enter first name" />
+                    <div *ngIf="adminForm.get('firstName').invalid && adminForm.get('firstName').touched" class="text-danger">
+                      First Name is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Last Name <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="lastName" placeholder="Enter last name" />
+                    <div *ngIf="adminForm.get('lastName').invalid && adminForm.get('lastName').touched" class="text-danger">
+                      Last Name is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Email <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="email" placeholder="Enter email address" />
+                    <div *ngIf="adminForm.get('email').invalid && adminForm.get('email').touched" class="text-danger">
+                      Valid Email is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-6">
+                  <div class="form-group local-forms">
+                    <label>Mobile <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="mobile" type="number" placeholder="Enter mobile number" />
+                    <div *ngIf="adminForm.get('mobile').invalid && adminForm.get('mobile').touched" class="text-danger">
+                      Valid Mobile number is required (10-15 digits).
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Date of Birth <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="dob" type="date" />
+                    <div *ngIf="adminForm.get('dob').invalid && adminForm.get('dob').touched" class="text-danger">
+                      Date of Birth is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Address Street 1 <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="addressStreet1" placeholder="Enter address street 1" />
+                    <div *ngIf="adminForm.get('addressStreet1').invalid && adminForm.get('addressStreet1').touched" class="text-danger">
+                      Address Street 1 is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Address Street 2 <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="addressStreet2" placeholder="Enter address street 2" />
+                    <div *ngIf="adminForm.get('addressStreet2').invalid && adminForm.get('addressStreet2').touched" class="text-danger">
+                      Address Street 2 is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Zip Code <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="zipCode" placeholder="Enter zip code" />
+                    <div *ngIf="adminForm.get('zipCode').invalid && adminForm.get('zipCode').touched" class="text-danger">
+                      Zip Code is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Country <span class="login-danger">*</span></label>
+                    <select class="form-control" formControlName="country" (change)="onCountryChange($event)">
+                      <option value="">Select Country</option>
+                      <option *ngFor="let country of countryList" [value]="country._id">{{ country.name }}</option>
+                    </select>
+                    <div *ngIf="adminForm.get('country').invalid && adminForm.get('country').touched" class="text-danger">
+                      Country is required.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>State <span class="login-danger">*</span></label>
+                    <select class="form-control" formControlName="state" (change)="onStateChange($event)">
+                      <option value="">Select State</option>
+                      <option *ngFor="let state of stateList" [value]="state._id">{{ state.name }}</option>
+                    </select>
+                    <div *ngIf="adminForm.get('state').invalid && adminForm.get('state').touched" class="text-danger">
+                      State is required.
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>City <span class="login-danger">*</span></label>
+                    <select class="form-control" formControlName="city">
+                      <option value="">Select City</option>
+                      <option *ngFor="let city of cityList" [value]="city._id">{{ city.name }}</option>
+                    </select>
+                    <div *ngIf="adminForm.get('city').invalid && adminForm.get('city').touched" class="text-danger">
+                      City is required.
+                    </div>
+                  </div>
+                </div>
+                
+
+                <div class="company_details_admin_panel">
+                  <h3>Company Details</h3>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Company Name <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="companyName" placeholder="Enter company name" />
+                    <div *ngIf="adminForm.get('companyName').invalid && adminForm.get('companyName').touched" class="text-danger">
+                      Company Name is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Company Address Street 1 <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="companyAddressStreet1" placeholder="Enter company address 1" />
+                    <div *ngIf="adminForm.get('companyAddressStreet1').invalid && adminForm.get('companyAddressStreet1').touched" class="text-danger">
+                      Company Address Street 1 is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="form-group local-forms">
+                    <label>Company Address Street 2 <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="companyAddressStreet2" placeholder="Enter company address 2" />
+                    <div *ngIf="adminForm.get('companyAddressStreet2').invalid && adminForm.get('companyAddressStreet2').touched" class="text-danger">
+                      Company Address Street 2 is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Company Zip Code <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="companyZipCode" placeholder="Enter company zip code" />
+                    <div *ngIf="adminForm.get('companyZipCode').invalid && adminForm.get('companyZipCode').touched" class="text-danger">
+                      Company Zip Code is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Company Mobile Number <span class="login-danger">*</span></label>
+                    <input class="form-control" formControlName="companyMobile" type="number" placeholder="Enter company mobile number" />
+                    <div *ngIf="adminForm.get('companyMobile').invalid && adminForm.get('companyMobile').touched" class="text-danger">
+                      Valid Company Mobile number is required (10-15 digits).
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                  <div class="form-group local-forms">
+                    <label>Company Fax Number</label>
+                    <input class="form-control" formControlName="companyFax" placeholder="Enter company fax number" />
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="doctor-submit text-end">
+                    <button *ngIf="!adminId" type="submit" class="btn btn-primary submit-form me-2" [disabled]="adminForm.invalid" (click)="onSubmit()">Submit</button>
+                    <button *ngIf="adminId" type="submit" class="btn btn-primary submit-form me-2" (click)="updateAdmin()" >Update</button>
+
+                    <button type="button" class="btn btn-primary cancel-form" (click)="onCancel()">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,235 @@
+<div class="page-wrapper">
+    <div class="content">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-12">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#">Physician</a>
+              </li>
+              <li class="breadcrumb-item">
+                <i class="feather-chevron-right"></i>
+              </li>
+              <li class="breadcrumb-item active">View Physician</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <form [formGroup]="physicianForm">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-heading">
+                      <h4>Physician Details</h4>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>First Name <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="firstName" placeholder="Enter first name" readonly />
+                      <div *ngIf="physicianForm.get('firstName').invalid && (physicianForm.get('firstName').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('firstName').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Last Name <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="lastName" placeholder="Enter last name" readonly />
+                      <div *ngIf="physicianForm.get('lastName').invalid && (physicianForm.get('lastName').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('lastName').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Email <span class="login-danger">*</span></label>
+                      <input class="form-control" type="email" formControlName="email" placeholder="Enter email address" readonly />
+                      <div *ngIf="physicianForm.get('email').invalid && (physicianForm.get('email').touched || submitted)">
+                        <div *ngIf="physicianForm.get('email').errors.required">This field is required.</div>
+                        <div class="error-message" *ngIf="physicianForm.get('email').errors.email">Invalid email address.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Mobile <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="phone" placeholder="Enter mobile number" readonly />
+                      <div *ngIf="physicianForm.get('phone').invalid && (physicianForm.get('phone').touched || submitted)">
+                        <div *ngIf="physicianForm.get('phone').errors.required">This field is required.</div>
+                        <div class="error-message" *ngIf="physicianForm.get('phone').errors.pattern">Only numbers are allowed.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Date of Birth <span class="login-danger">*</span></label>
+                      <input class="form-control" type="date" formControlName="dob" readonly />
+                      <div *ngIf="physicianForm.get('dob').invalid && (physicianForm.get('dob').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('dob').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Address Street 1 <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="addressStreet1" placeholder="Enter address" readonly />
+                      <div *ngIf="physicianForm.get('addressStreet1').invalid && (physicianForm.get('addressStreet1').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('addressStreet1').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Address Street 2 <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="addressStreet2" placeholder="Enter address" readonly />
+                      <div *ngIf="physicianForm.get('addressStreet2').invalid && (physicianForm.get('addressStreet2').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('addressStreet2').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Zip Code <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="zipCode" placeholder="Enter zip code" readonly />
+                      <div *ngIf="physicianForm.get('zipCode').invalid && (physicianForm.get('zipCode').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('zipCode').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Country <span class="login-danger">*</span></label>
+                      <select class="form-control" formControlName="country" (change)="onCountryChange($event)" readonly>
+                        <option value="">Select country</option>
+                        <option *ngFor="let country of countryList" [value]="country._id">{{ country.name }}</option>
+                      </select>
+                      <div *ngIf="physicianForm.get('country').invalid && (physicianForm.get('country').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('country').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>State <span class="login-danger">*</span></label>
+                      <select class="form-control" formControlName="state" (change)="onStateChange($event)" readonly>
+                        <option value="">Select state</option>
+                        <option *ngFor="let state of stateList" [value]="state._id">{{ state.name }}</option>
+                      </select>
+                      <div *ngIf="physicianForm.get('state').invalid && (physicianForm.get('state').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('state').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>City <span class="login-danger">*</span></label>
+                      <select class="form-control" formControlName="city" readonly>
+                        <option value="">Select city</option>
+                        <option *ngFor="let city of cityList" [value]="city._id">{{ city.name }}</option>
+                      </select>
+                      <div *ngIf="physicianForm.get('city').invalid && (physicianForm.get('city').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('city').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Medical Licence Number <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="medicalLicenceNumber" placeholder="Enter medical licence number" readonly />
+                      <div *ngIf="physicianForm.get('medicalLicenceNumber').invalid && (physicianForm.get('medicalLicenceNumber').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('medicalLicenceNumber').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>Medical Licence Date <span class="login-danger">*</span></label>
+                      <input class="form-control" type="date" formControlName="medicalLicenceDate" readonly />
+                      <div *ngIf="physicianForm.get('medicalLicenceDate').invalid && (physicianForm.get('medicalLicenceDate').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('medicalLicenceDate').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>DEA Number <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="deaNumber" placeholder="Enter DEA number" readonly />
+                      <div *ngIf="physicianForm.get('deaNumber').invalid && (physicianForm.get('deaNumber').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('deaNumber').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>DEA Expiry Date <span class="login-danger">*</span></label>
+                      <input class="form-control" type="date" formControlName="deaExpiryDate" readonly />
+                      <div *ngIf="physicianForm.get('deaExpiryDate').invalid && (physicianForm.get('deaExpiryDate').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('deaExpiryDate').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>CDS Number <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="cdsNumber" placeholder="Enter CDS number" readonly />
+                      <div *ngIf="physicianForm.get('cdsNumber').invalid && (physicianForm.get('cdsNumber').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('cdsNumber').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>CDS Expiry Date <span class="login-danger">*</span></label>
+                      <input class="form-control" type="date" formControlName="cdsExpiryDate" readonly />
+                      <div *ngIf="physicianForm.get('cdsExpiryDate').invalid && (physicianForm.get('cdsExpiryDate').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('cdsExpiryDate').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <div class="form-group local-forms">
+                      <label>NPI Number <span class="login-danger">*</span></label>
+                      <input class="form-control" type="text" formControlName="npiNumber" placeholder="Enter NPI number" readonly />
+                      <div *ngIf="physicianForm.get('npiNumber').invalid && (physicianForm.get('npiNumber').touched || submitted)">
+                        <div class="error-message" *ngIf="physicianForm.get('npiNumber').errors.required">This field is required.</div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12">
+                    <div class="doctor-submit text-end">
+                      <!-- Submit button removed -->
+                      <button type="button" class="btn btn-primary cancel-form" (click)="onCancel()">Cancel</button>
+                    </div>
+                  </div>
+  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

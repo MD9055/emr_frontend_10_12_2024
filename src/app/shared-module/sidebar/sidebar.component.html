@@ -1,0 +1,21 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <div id="sidebar-menu" class="sidebar-menu" role="menu">
+      <ul class="menu-list">
+        <ng-container *ngFor="let menuItem of menuItems">
+          <li role="menuitem" class="menu-item">
+            <a *ngIf="menuItem.label !== 'Logout'" [routerLink]="menuItem.route" aria-label="menuItem.label" class="menu-link">
+              <img [src]="menuItem.icon" alt="" class="menu-icon" />
+              <span class="menu-label">{{ menuItem.label }}</span>
+            </a>
+            <a *ngIf="menuItem.label === 'Logout'" (click)="logout()" [attr.aria-label]="menuItem.label" class="menu-link">
+
+              <img [src]="menuItem.icon" alt="" class="menu-icon" />
+              <span class="menu-label">{{ menuItem.label }}</span>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</div>

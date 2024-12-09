@@ -1,0 +1,218 @@
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  aria-labelledby="modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title" id="modal-title">
+          ADD {{ noteType | uppercase }}
+        </h5>
+      </div>
+      <div class="card custom-card shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 border-end">
+              <h5 class="section-title mb-3">Available Notes</h5>
+              <div class="form-group mb-3">
+                <div class="col-md-12">
+                  <div *ngIf="noteType!= 'currentMedication'" class="list-container">
+                    <div class="list-box">
+                      <ul class="list-group" *ngFor="let item of notes">
+                        <li
+                          class="list-group-item d-flex align-items-center justify-content-between"
+                        >
+                          <div class="item-details">
+                            <input
+                              type="checkbox"
+                              [checked]="checkedDonorItems.includes(item.description)"
+                              (change)="handleSelectDonor(item)"
+                              class="checkbox me-2"
+                            />
+                            {{ item.name }}
+                          </div>
+                          <button
+                            class="btn text-danger"
+                            (click)="openModal(item)"
+                          >
+                          <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+                  <ng-select
+                   *ngIf="noteType== 'currentMedication'"
+                    id="patients"
+                    [items]="diagnosisList"
+                    [bindLabel]="'PsnDrugDescription'"
+                    [bindValue]="'_id'"
+                    [multiple]="true"
+                    [searchable]="true"
+                    [loading]="loading"
+                    (change)="onSelectionChange($event)"
+                    (scrollToEnd)="loadMoreItems()"
+                    (search)="onSearch($event)"
+                    [(ngModel)]="patientSelectedIds"
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-control custom-ng-select"
+                  >
+                    <ng-template ng-option-tmp let-item="item">
+                      <div class="custom-option">
+                        {{ item.PsnDrugDescription }}
+                      </div>
+                    </ng-template>
+
+                    <ng-template
+                      ng-multi-label-tmp
+                      let-items="items"
+                      let-clear="clear"
+                    >
+                      <div class="selected-items">
+                        <span *ngFor="let item of items" style="color: black">
+                          {{ item.PsnDrugDescription }}
+                          <button
+                            type="button"
+                            class="close-btn"
+                            (click)="removeItem(item)"
+                          >
+                            ✖
+                          </button>
+                        </span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Form and Output -->
+            <div class="col-md-6" >
+              <h5 class="section-title mb-3"*ngIf="noteType!= 'currentMedication'">Add Note</h5>
+              <form
+                [formGroup]="itemForm"
+                class="mb-4"
+                (ngSubmit)="onAddItem()"
+                *ngIf="noteType!= 'currentMedication'"
+              >
+                <div class="form-group mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    id="name"
+                    formControlName="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter name"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('name')?.touched &&
+                        getControl('name')?.invalid
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      getControl('name')?.touched && getControl('name')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('name')?.errors?.['required']">
+                      Name is required.
+                    </div>
+                    <div *ngIf="getControl('name')?.errors?.['minlength']">
+                      Name must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    id="description"
+                    formControlName="description"
+                    rows="3"
+                    class="form-control"
+                    placeholder="Enter description"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('description')?.touched &&
+                        getControl('description')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('description')?.touched &&
+                      getControl('description')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="getControl('description')?.errors?.['required']"
+                    >
+                      Description is required.
+                    </div>
+                    <div
+                      *ngIf="getControl('description')?.errors?.['minlength']"
+                    >
+                      Description must be at least 10 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="isLoading"
+                >
+                  {{ isLoading ? "Adding..." : "Add Item" }}
+                </button>
+              </form>
+
+              <h5 class="section-title mb-3">Taker Items</h5>
+              <textarea
+                class="form-control"
+                [rows]="row"
+                placeholder="Items will be taken here..."
+                [(ngModel)]="textAreaData"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary custom-btn-secondary"
+          (click)="handleClose()"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary custom-btn-primary"
+          (click)="handleSubmit()"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="custom-modal-overlay" *ngIf="isModalOpen">
+    <div class="custom-modal">
+      <h3>Confirm Delete</h3>
+      <p>Are you sure you want to delete this item?</p>
+      <div class="modal-actions">
+        <button class="btn cancel" (click)="closeModal()">No</button>
+        <button class="btn confirm" (click)="confirmDelete()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

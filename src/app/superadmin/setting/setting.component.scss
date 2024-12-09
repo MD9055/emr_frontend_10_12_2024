@@ -1,0 +1,28 @@
+.settings-body {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 30px;
+}
+
+.settings-wrapper {
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff; /* White background for the box */
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.nav-tabs .nav-link {
+    margin-bottom: -1px; /* Overlap the bottom border */
+}
+
+.nav-tabs .nav-link.active {
+    border: 1px solid #007bff; /* Active tab border */
+    border-bottom: transparent; /* Prevent double border */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}

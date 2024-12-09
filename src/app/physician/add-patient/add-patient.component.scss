@@ -1,0 +1,28 @@
+.dropdown-kin{
+    width: 234px; border-radius: 10px; font-size: 14px; min-height: 42px;
+}
+
+.dropdown-country_state_city{
+    width: 320px; border-radius: 10px; font-size: 14px; min-height: 45px;
+}
+
+.local-forms {
+    margin-bottom: 1.5rem; /* Space between form groups */
+  }
+  
+  .form-label {
+    font-weight: bold; /* Make label bold */
+    margin-bottom: 0.5rem; /* Space between label and input */
+  }
+  
+  .form-control-file {
+    border: 1px solid #ced4da; /* Custom border */
+    border-radius: 0.25rem; /* Rounded corners */
+    padding: 0.5rem; /* Padding for the input */
+  }
+  
+  .text-danger {
+    font-size: 0.875rem; /* Slightly smaller error message */
+    margin-top: 0.25rem; /* Space above error message */
+  }
+  

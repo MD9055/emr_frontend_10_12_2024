@@ -1,0 +1,167 @@
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">Staff</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <i class="feather-chevron-right"></i>
+                        </li>
+                        <li class="breadcrumb-item active">{{status}} Staff</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Staff Details</h4>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>First Name <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="firstName" placeholder="Enter first name" />
+                                        <div *ngIf="staffForm.get('firstName')?.invalid && (staffForm.get('firstName')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('firstName')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Last Name <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="lastName" placeholder="Enter last name" />
+                                        <div *ngIf="staffForm.get('lastName')?.invalid && (staffForm.get('lastName')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('lastName')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Email <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="email" formControlName="email" placeholder="Enter email address" />
+                                        <div *ngIf="staffForm.get('email')?.invalid && (staffForm.get('email')?.touched || submitted)">
+                                            <div *ngIf="staffForm.get('email')?.errors?.['required']">This field is required.</div>
+                                            <div class="error-message" *ngIf="staffForm.get('email')?.errors?.['email']">Invalid email address.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Mobile <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="phone" placeholder="Enter mobile number" />
+                                        <div *ngIf="staffForm.get('phone')?.invalid && (staffForm.get('phone')?.touched || submitted)">
+                                            <div *ngIf="staffForm.get('phone')?.errors?.['required']">This field is required.</div>
+                                            <div class="error-message" *ngIf="staffForm.get('phone')?.errors?.['pattern']">Only numbers are allowed.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Date of Birth <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="date" formControlName="dob" />
+                                        <div *ngIf="staffForm.get('dob')?.invalid && (staffForm.get('dob')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('dob')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Address Street 1 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="addressStreet1" placeholder="Enter address" />
+                                        <div *ngIf="staffForm.get('addressStreet1')?.invalid && (staffForm.get('addressStreet1')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('addressStreet1')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Address Street 2 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="addressStreet2" placeholder="Enter address" />
+                                        <div *ngIf="staffForm.get('addressStreet2')?.invalid && (staffForm.get('addressStreet2')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('addressStreet2')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Zip Code <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" formControlName="zipCode" placeholder="Enter zip code" />
+                                        <div *ngIf="staffForm.get('zipCode')?.invalid && (staffForm.get('zipCode')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('zipCode')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Country <span class="login-danger">*</span></label>
+                                        <select class="form-control" formControlName="country" (change)="onCountryChange($event)">
+                                            <option value="">Select country</option>
+                                            <option *ngFor="let country of countryList" [value]="country._id">{{ country.name }}</option>
+                                        </select>
+                                        <div *ngIf="staffForm.get('country')?.invalid && (staffForm.get('country')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('country')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>State <span class="login-danger">*</span></label>
+                                        <select class="form-control" formControlName="state" (change)="onStateChange($event)">
+                                            <option value="">Select state</option>
+                                            <option *ngFor="let state of stateList" [value]="state._id">{{ state.name }}</option>
+                                        </select>
+                                        <div *ngIf="staffForm.get('state')?.invalid && (staffForm.get('state')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('state')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>City <span class="login-danger">*</span></label>
+                                        <select class="form-control" formControlName="city">
+                                            <option value="">Select city</option>
+                                            <option *ngFor="let city of cityList" [value]="city._id">{{ city.name }}</option>
+                                        </select>
+                                        <div *ngIf="staffForm.get('city')?.invalid && (staffForm.get('city')?.touched || submitted)">
+                                            <div class="error-message" *ngIf="staffForm.get('city')?.errors?.['required']">This field is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button *ngIf="status == 'Update'" class="btn btn-primary submit-form me-2" type="submit">Update</button>
+                                        <button  *ngIf="status != 'Update'"class="btn btn-primary submit-form me-2" type="submit">Submit</button>
+
+                                        <button type="button" class="btn btn-primary cancel-form" (click)="onCancel()">Cancel</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

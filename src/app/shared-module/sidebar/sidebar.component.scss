@@ -1,0 +1,46 @@
+.sidebar-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-item {
+    margin-bottom: 20px; /* spacing between menu items */
+  }
+  
+  .menu-link {
+    text-decoration: none;
+    color: #333; /* menu text color */
+  }
+  
+  .menu-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .menu-label {
+    font-size: 16px;
+  }
+
+  .menu-item {
+    cursor: pointer; // Ensure pointer cursor for menu items
+  }
+  
+  .menu-link {
+    display: flex; // Align items horizontally
+    align-items: center; // Center items vertically
+  }
+  
+  .menu-link:hover {
+    background-color: rgba(0, 0, 0, 0.1); // Optional: Add a hover effect
+  }
+  

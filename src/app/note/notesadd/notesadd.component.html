@@ -1,0 +1,490 @@
+<div class="page-wrapper">
+  <div class="content">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Patients</a></li>
+            <li class="breadcrumb-item">
+              <i class="feather icon-chevron-right"></i>
+            </li>
+            <li class="breadcrumb-item active">Add Patients Notes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form [formGroup]="notesForm">
+            <div class="row">
+              <!-- Left Section (col-md-6) -->
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <label for="chiefComplaint">Chief Complaint</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="chiefComplaint"
+                    formControlName="chiefComplaint"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('chiefComplaint')?.touched &&
+                        getControl('chiefComplaint')?.invalid
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      getControl('chiefComplaint')?.touched &&
+                      getControl('chiefComplaint')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="getControl('chiefComplaint')?.errors?.['required']"
+                    >
+                      Chief Complaint is required.
+                    </div>
+                    <div
+                      *ngIf="getControl('chiefComplaint')?.errors?.['minlength']"
+                    >
+                      Chief Complaint must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="history">History of Present Illness</label>
+                  <textarea
+                    class="form-control"
+                    id="history"
+                    rows="6"
+                    (dblclick)="openModal('history',notesForm.get('history')?.value)"
+                    formControlName="history"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('history')?.touched &&
+                        getControl('history')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      (getControl('history')?.touched &&
+                      getControl('history')?.invalid)
+                      || getControl('history')?.errors
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('history')?.errors?.['required']">
+                      History is required.
+                    </div>
+                    <div *ngIf="getControl('history')?.errors?.['minlength']">
+                      History must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="review">Review of System</label>
+                  <textarea
+                    class="form-control"
+                    id="review"
+                    rows="6"
+                    (dblclick)="openModal('ros',notesForm.get('ros')?.value)"
+                    formControlName="ros"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('ros')?.touched && getControl('ros')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('ros')?.touched && getControl('ros')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('ros')?.errors?.['required']">
+                      Review of System is required.
+                    </div>
+                    <div *ngIf="getControl('ros')?.errors?.['minlength']">
+                      Review of System must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="socialHistory">Social History</label>
+                  <textarea
+                    class="form-control"
+                    id="socialHistory"
+                    rows="6"
+                    (dblclick)="openModal('social_history',notesForm.get('social_history')?.value)"
+                    formControlName="social_history"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('social_history')?.touched &&
+                        getControl('social_history')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('social_history')?.touched &&
+                      getControl('social_history')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="getControl('social_history')?.errors?.['required']"
+                    >
+                      Social History is required.
+                    </div>
+                    <div
+                      *ngIf="getControl('social_history')?.errors?.['minlength']"
+                    >
+                      Social History must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="allergies">Allergies</label>
+                  <textarea
+                    class="form-control"
+                    id="allergies"
+                    rows="6"
+                    (dblclick)="openModal('allergies',notesForm.get('allergies')?.value)"
+                    formControlName="allergies"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('allergies')?.touched &&
+                        getControl('allergies')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('allergies')?.touched &&
+                      getControl('allergies')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('allergies')?.errors?.['required']">
+                      Allergies is required.
+                    </div>
+                    <div *ngIf="getControl('allergies')?.errors?.['minlength']">
+                      Allergies must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="currentMedication">Current Medication</label>
+                  <textarea
+                    class="form-control"
+                    id="currentMedication"
+                    rows="6"
+                    formControlName="currentMedication"
+                    (dblclick)="openModal('currentMedication',notesForm.get('currentMedication')?.value)"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('currentMedication')?.touched &&
+                        getControl('currentMedication')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('currentMedication')?.touched &&
+                      getControl('currentMedication')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div
+                      *ngIf="getControl('currentMedication')?.errors?.['required']"
+                    >
+                      Current Medication is required.
+                    </div>
+                    <div
+                      *ngIf="getControl('currentMedication')?.errors?.['minlength']"
+                    >
+                      Current Medication must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Section (col-md-6) -->
+              <div class="col-md-6">
+                <label for="Physical Exam">Physical Exam</label>
+             
+               
+                <div class="row g-2 mt-1">
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="weight"
+                        (keyup)="updateTableEntry()"
+                        id="weight"
+                        placeholder=" "
+                      />
+                      <label for="weight" class="floating-label">Weight (lb)</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="height"
+                        (keyup)="updateTableEntry()"
+                        id="height"
+                        placeholder=" "
+                      />
+                      <label for="height" class="floating-label">Height (in)</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="temp"
+                        (keyup)="updateTableEntry()"
+                        id="temp"
+                        placeholder=" "
+                      />
+                      <label for="temp" class="floating-label">Temp (°F)</label>
+                    </div>
+                  </div>
+                
+                  <!-- BP input with two separate boxes for systolic and diastolic -->
+                  <div class="col-6 d-flex align-items-center">
+                    <div class="input-container me-1">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="bpSys"
+                        (keyup)="updateTableEntry()"
+                        id="bpSys"
+                        placeholder=" "
+                      />
+                      <label for="bpSys" class="floating-label">BP (Sys)</label>
+                    </div>
+                    <span>/</span>
+                    <div class="input-container ms-1">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="bpDia"
+                        (keyup)="updateTableEntry()"
+                        id="bpDia"
+                        placeholder=" "
+                      />
+                      <label for="bpDia" class="floating-label">BP (Dia)</label>
+                    </div>
+                  </div>
+                
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="pulse"
+                        (keyup)="updateTableEntry()"
+                        id="pulse"
+                        placeholder=" "
+                      />
+                      <label for="pulse" class="floating-label">Pulse</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="rr"
+                        (keyup)="updateTableEntry()"
+                        id="rr"
+                        placeholder=""
+                      />
+                      <label for="rr" class="floating-label">RR</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="input-container">
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="bmi"
+                        (keyup)="updateTableEntry()"
+                        id="bmi"
+                        placeholder=" "
+                      />
+                      <label for="bmi" class="floating-label">BMI</label>
+                    </div>
+                  </div>
+                </div>
+                
+                
+
+
+                <div class="table-responsive mt-3">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Weight (lb)</th>
+                        <th>Height (in)</th>
+                        <th>Temp (°F)</th>
+                        <th>BP</th>
+                        <th>Pulse</th>
+                        <th>RR</th>
+                        <th>BMI</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor="let data of tableData">  
+                      <td>{{ data.date }}</td>
+                      <td>{{ data.weight }}</td>
+                      <td>{{ data.height }}</td>
+                      <td>{{ data.temp }}</td>
+                      <td>{{ data.bpSys }}/ {{data.bpDia}}</td>
+                      <td>{{ data.pulse }}</td>
+                      <td>{{ data.rr }}</td>
+                      <td>{{ data.bmi }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="assessment">Physical</label>
+                  <textarea
+                    class="form-control"
+                    id="assessment"
+                    rows="6"
+                    (dblclick)="openModal('physical',notesForm.get('physical')?.value)"
+                    formControlName="physical"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('physical')?.touched &&
+                        getControl('physical')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('physical')?.touched &&
+                      getControl('physical')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('physical')?.errors?.['required']">
+                      Physical is required.
+                    </div>
+                    <div *ngIf="getControl('physical')?.errors?.['minlength']">
+                      Physical must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  
+                  <ng-select
+                    id="patients"
+                    [items]="diagnosisList"
+                    [bindLabel]="'desc'"
+                    [bindValue]="'_id'"
+                    [multiple]="true"
+                    [searchable]="true"
+                    [loading]="loading"
+                    (change)="onSelectionChange($event)"
+                    (scrollToEnd)="loadMoreItems()"
+                    (search)="onSearch($event)"
+                    [(ngModel)]="patientSelectedIds"
+                    [ngModelOptions]="{standalone: true}"
+                    class="form-control custom-ng-select"
+                  >
+                    <ng-template ng-option-tmp let-item="item">
+                      <div class="custom-option">
+                        ({{ item.code }}) {{ item.desc }}
+                      </div>
+                    </ng-template>
+
+                    <ng-template
+                      ng-multi-label-tmp
+                      let-items="items"
+                      let-clear="clear"
+                    >
+                      <div class="selected-items">
+                        <span *ngFor="let item of items" style="color: black">
+                          ({{ item.code }}) {{ item.desc }}
+                          <button
+                            type="button"
+                            class="close-btn"
+                            (click)="removeItem(item)"
+                          >
+                            ✖
+                          </button>
+                        </span>
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="assessment">Assessment Show</label>
+                  <textarea
+                    class="form-control"
+                    id="assessment"
+                    rows="6"
+                    [(ngModel)]="textAreaData"
+                    [ngModelOptions]="{standalone: true}"
+                    [disabled]="isFieldDisabled"
+                  ></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="plan">Plan</label>
+                  <textarea
+                    class="form-control"
+                    id="plan"
+                    rows="6"
+                    (dblclick)="openModal('plan',notesForm.get('plan')?.value)"
+                    formControlName="plan"
+                    [ngClass]="{
+                      'is-invalid':
+                        getControl('plan')?.touched &&
+                        getControl('plan')?.invalid
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      getControl('plan')?.touched && getControl('plan')?.invalid
+                    "
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="getControl('plan')?.errors?.['required']">
+                      Plan is required.
+                    </div>
+                    <div *ngIf="getControl('plan')?.errors?.['minlength']">
+                      Plan must be at least 3 characters.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3 d-flex justify-content-end">
+                  <button class="btn btn-primary">Current Medication</button>
+                </div>
+              </div>
+            </div>
+            <!-- Buttons at the bottom -->
+            <div class="mt-0">
+              <button class="btn btn-primary" (click)="openSignOffModal()">Sign Off</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
